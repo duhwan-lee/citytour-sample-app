@@ -6,7 +6,7 @@ import org.springframework.http.ResponseEntity
 enum class ResponseType(status: HttpStatus) {
     OK(HttpStatus.OK);
 
-    val httpStatus = status
+    private val httpStatus = status
 
     fun toResponse(message: String, data: Any): ResponseEntity<CommonResponse> {
         return ResponseEntity(CommonResponse(message, data), httpStatus)
@@ -17,6 +17,10 @@ enum class ResponseType(status: HttpStatus) {
     }
 
     fun toResponse(): ResponseEntity<CommonResponse> {
-        return ResponseEntity(CommonResponse("Success", null), httpStatus)
+        return toResponse("Success")
+    }
+
+    fun toResponse(data: Any): ResponseEntity<CommonResponse> {
+        return toResponse("Success", data)
     }
 }
