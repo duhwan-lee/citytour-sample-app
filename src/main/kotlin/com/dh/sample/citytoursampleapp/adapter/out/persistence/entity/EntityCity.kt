@@ -8,7 +8,7 @@ import jakarta.persistence.*
 class EntityCity(cityName: String, country: String) {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    val id: Long? = null
+    val cityId: Long? = null
 
     val country: String = country
     var cityName: String = cityName

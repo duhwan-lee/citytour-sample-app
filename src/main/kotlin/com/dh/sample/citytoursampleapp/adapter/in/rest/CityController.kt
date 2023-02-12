@@ -25,18 +25,18 @@ class CityController(private val cityUseCase: CityUseCase) {
         return ResponseType.OK.toResponse(city)
     }
 
-    @GetMapping("")
-    fun findCity(@RequestParam("id") id: Long): ResponseEntity<CommonResponse> {
-        val city = cityUseCase.getCityInfo(id)
+    @GetMapping("/{cityId}")
+    fun findCity(@PathVariable("cityId") cityId: Long): ResponseEntity<CommonResponse> {
+        val city = cityUseCase.getCityInfo(cityId)
         return ResponseType.OK.toResponse(city)
     }
 
-    @PutMapping("/{id}")
+    @PutMapping("/{cityId}")
     fun updateCity(
-        @PathVariable("id") id: Long,
+        @PathVariable("cityId") cityId: Long,
         @Valid @RequestBody cityUpdateRequest: CityUpdateRequest
     ): ResponseEntity<CommonResponse> {
-        val city = cityUseCase.updateCityInfo(id, cityUpdateRequest)
+        val city = cityUseCase.updateCityInfo(cityId, cityUpdateRequest)
         return ResponseType.OK.toResponse(city)
     }
 

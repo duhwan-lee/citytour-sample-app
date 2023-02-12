@@ -29,8 +29,8 @@ class CityService(private val cityPort: CityPort) : CityUseCase {
         return City.from(entityCity)
     }
 
-    override fun updateCityInfo(id: Long, cityUpdateRequest: CityUpdateRequest): City {
-        cityPort.findByCityId(id)?.let {
+    override fun updateCityInfo(cityId: Long, cityUpdateRequest: CityUpdateRequest): City {
+        cityPort.findByCityId(cityId)?.let {
             it.modify(cityUpdateRequest.cityName)
             val entity = cityPort.updateEntitySave(it)
             return City.from(entity)
@@ -47,8 +47,8 @@ class CityService(private val cityPort: CityPort) : CityUseCase {
         }
     }
 
-    override fun getCityInfo(id: Long): City {
-        return cityPort.findByCityId(id)?.let {
+    override fun getCityInfo(cityId: Long): City {
+        return cityPort.findByCityId(cityId)?.let {
             return City.from(it)
         } ?: kotlin.run {
             throw CityTourException(ErrorType.NOT_EXIST_CITY)

@@ -17,8 +17,8 @@ class CityAdapter(private val cityRepository: CityRepository) : CityPort {
         return cityRepository.save(entityCity)
     }
 
-    override fun findByCityId(id: Long): EntityCity? {
-        return cityRepository.findByIdOrNull(id)
+    override fun findByCityId(cityId: Long): EntityCity? {
+        return cityRepository.findByIdOrNull(cityId)
     }
 
     override fun updateEntitySave(entityCity: EntityCity): EntityCity {

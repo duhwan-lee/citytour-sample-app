@@ -7,7 +7,7 @@ interface CityPort {
 
     fun insertEntitySave(entityCity: EntityCity): EntityCity
 
-    fun findByCityId(id: Long): EntityCity?
+    fun findByCityId(cityId: Long): EntityCity?
 
     fun updateEntitySave(entityCity: EntityCity): EntityCity
 }

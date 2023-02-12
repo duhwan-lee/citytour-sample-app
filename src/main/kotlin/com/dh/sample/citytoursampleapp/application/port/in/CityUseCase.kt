@@ -8,8 +8,8 @@ interface CityUseCase {
     fun isExist(cityName: String): Boolean
 
     fun insertCity(cityRegisterRequest: CityRegisterRequest): City
-    fun updateCityInfo(id: Long, cityUpdateRequest: CityUpdateRequest): City
+    fun updateCityInfo(cityId: Long, cityUpdateRequest: CityUpdateRequest): City
 
     fun getCityInfo(cityName: String): City
-    fun getCityInfo(id: Long): City
+    fun getCityInfo(cityId: Long): City
 }
