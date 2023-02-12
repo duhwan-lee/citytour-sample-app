@@ -9,18 +9,18 @@ import java.time.LocalDateTime
 @Entity
 @Table(name = "city")
 @EntityListeners(AuditingEntityListener::class)
-class EntityCity(cityName: String, country: String) {
+class EntityCity(cityName: String, val country: String) {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     val cityId: Long? = null
 
-    val country: String = country
     var cityName: String = cityName
         private set
 
     @CreatedDate
     var createAt: LocalDateTime = LocalDateTime.now()
         private set
+
     fun modify(cityName: String) {
         this.cityName = cityName
     }

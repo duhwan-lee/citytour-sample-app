@@ -1,15 +1,21 @@
 package com.dh.sample.citytoursampleapp.adapter.out.persistence
 
 import com.dh.sample.citytoursampleapp.adapter.out.persistence.entity.EntityCity
+import com.dh.sample.citytoursampleapp.adapter.out.persistence.entity.EntityCitySearch
 import com.dh.sample.citytoursampleapp.adapter.out.persistence.repository.CityRepository
+import com.dh.sample.citytoursampleapp.adapter.out.persistence.repository.SearchRepository
 import com.dh.sample.citytoursampleapp.application.port.out.persistence.CityPort
+import com.dh.sample.citytoursampleapp.application.port.out.persistence.SearchPort
 import com.dh.sample.citytoursampleapp.domain.exception.CityTourException
 import com.dh.sample.citytoursampleapp.domain.exception.ErrorType
 import com.dh.sample.citytoursampleapp.infrastructure.Adapter
 import org.springframework.data.repository.findByIdOrNull
 
 @Adapter
-class CityAdapter(private val cityRepository: CityRepository) : CityPort {
+class CityAdapter(
+    private val cityRepository: CityRepository,
+    private val searchRepository: SearchRepository
+) : CityPort, SearchPort {
     override fun findByCityName(cityName: String): EntityCity? {
         return cityRepository.findByCityNameEquals(cityName)
     }
@@ -33,5 +39,9 @@ class CityAdapter(private val cityRepository: CityRepository) : CityPort {
         } ?: kotlin.run {
             throw CityTourException(ErrorType.NOT_EXIST_CITY)
         }
+    }
+
+    override fun saveSearchInfo(cityId: Long) {
+        searchRepository.save(EntityCitySearch(cityId))
     }
 }

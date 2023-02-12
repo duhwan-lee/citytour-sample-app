@@ -5,6 +5,7 @@ import com.dh.sample.citytoursampleapp.adapter.`in`.data.request.CityUpdateReque
 import com.dh.sample.citytoursampleapp.adapter.out.persistence.entity.EntityCity
 import com.dh.sample.citytoursampleapp.application.port.`in`.CityUseCase
 import com.dh.sample.citytoursampleapp.application.port.out.persistence.CityPort
+import com.dh.sample.citytoursampleapp.application.port.out.persistence.SearchPort
 import com.dh.sample.citytoursampleapp.application.port.out.persistence.TourPort
 import com.dh.sample.citytoursampleapp.domain.City
 import com.dh.sample.citytoursampleapp.domain.exception.CityTourException
@@ -12,7 +13,11 @@ import com.dh.sample.citytoursampleapp.domain.exception.ErrorType
 import org.springframework.stereotype.Service
 
 @Service
-class CityService(private val cityPort: CityPort, private val tourPort: TourPort) : CityUseCase {
+class CityService(
+    private val cityPort: CityPort,
+    private val tourPort: TourPort,
+    private val searchPort: SearchPort
+) : CityUseCase {
     override fun isExist(cityName: String): Boolean {
         return cityPort.findByCityName(cityName)?.let { true } ?: false
     }
@@ -42,6 +47,7 @@ class CityService(private val cityPort: CityPort, private val tourPort: TourPort
 
     override fun getCityInfo(cityName: String): City {
         return cityPort.findByCityName(cityName)?.let {
+            searchPort.saveSearchInfo(it.cityId!!)
             City.from(it)
         } ?: kotlin.run {
             throw CityTourException(ErrorType.NOT_EXIST_CITY)
@@ -50,7 +56,8 @@ class CityService(private val cityPort: CityPort, private val tourPort: TourPort
 
     override fun getCityInfo(cityId: Long): City {
         return cityPort.findByCityId(cityId)?.let {
-            return City.from(it)
+            searchPort.saveSearchInfo(it.cityId!!)
+            City.from(it)
         } ?: kotlin.run {
             throw CityTourException(ErrorType.NOT_EXIST_CITY)
         }
