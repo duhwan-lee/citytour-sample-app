@@ -5,13 +5,14 @@ import com.dh.sample.citytoursampleapp.adapter.`in`.data.request.CityUpdateReque
 import com.dh.sample.citytoursampleapp.adapter.out.persistence.entity.EntityCity
 import com.dh.sample.citytoursampleapp.application.port.`in`.CityUseCase
 import com.dh.sample.citytoursampleapp.application.port.out.persistence.CityPort
+import com.dh.sample.citytoursampleapp.application.port.out.persistence.TourPort
 import com.dh.sample.citytoursampleapp.domain.City
 import com.dh.sample.citytoursampleapp.domain.exception.CityTourException
 import com.dh.sample.citytoursampleapp.domain.exception.ErrorType
 import org.springframework.stereotype.Service
 
 @Service
-class CityService(private val cityPort: CityPort) : CityUseCase {
+class CityService(private val cityPort: CityPort, private val tourPort: TourPort) : CityUseCase {
     override fun isExist(cityName: String): Boolean {
         return cityPort.findByCityName(cityName)?.let { true } ?: false
     }
@@ -52,6 +53,14 @@ class CityService(private val cityPort: CityPort) : CityUseCase {
             return City.from(it)
         } ?: kotlin.run {
             throw CityTourException(ErrorType.NOT_EXIST_CITY)
+        }
+    }
+
+    override fun deleteCityInfo(cityId: Long) {
+        if (tourPort.getTourInfosByCityId(cityId).isEmpty()) {
+            cityPort.deleteCityInfo(cityId)
+        } else {
+            throw CityTourException(ErrorType.USED_CITY)
         }
     }
 

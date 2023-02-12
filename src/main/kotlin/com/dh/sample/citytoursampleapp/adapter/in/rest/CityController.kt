@@ -40,11 +40,12 @@ class CityController(private val cityUseCase: CityUseCase) {
         return ResponseType.OK.toResponse(city)
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/{cityId}")
     fun deleteCity(
-        @PathVariable("id") id: Long
+        @PathVariable("cityId") cityId: Long
     ): ResponseEntity<CommonResponse> {
-        TODO("구현해야 함")
+        cityUseCase.deleteCityInfo(cityId)
+        return ResponseType.OK.toResponse()
     }
 
 }

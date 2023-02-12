@@ -10,4 +10,6 @@ interface CityPort {
     fun findByCityId(cityId: Long): EntityCity?
 
     fun updateEntitySave(entityCity: EntityCity): EntityCity
+
+    fun deleteCityInfo(cityId: Long)
 }

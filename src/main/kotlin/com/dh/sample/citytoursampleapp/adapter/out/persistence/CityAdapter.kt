@@ -3,6 +3,8 @@ package com.dh.sample.citytoursampleapp.adapter.out.persistence
 import com.dh.sample.citytoursampleapp.adapter.out.persistence.entity.EntityCity
 import com.dh.sample.citytoursampleapp.adapter.out.persistence.repository.CityRepository
 import com.dh.sample.citytoursampleapp.application.port.out.persistence.CityPort
+import com.dh.sample.citytoursampleapp.domain.exception.CityTourException
+import com.dh.sample.citytoursampleapp.domain.exception.ErrorType
 import com.dh.sample.citytoursampleapp.infrastructure.Adapter
 import org.springframework.data.repository.findByIdOrNull
 
@@ -23,5 +25,13 @@ class CityAdapter(private val cityRepository: CityRepository) : CityPort {
 
     override fun updateEntitySave(entityCity: EntityCity): EntityCity {
         return cityRepository.save(entityCity)
+    }
+
+    override fun deleteCityInfo(cityId: Long) {
+        cityRepository.findByIdOrNull(cityId)?.let {
+            cityRepository.delete(it)
+        } ?: kotlin.run {
+            throw CityTourException(ErrorType.NOT_EXIST_CITY)
+        }
     }
 }

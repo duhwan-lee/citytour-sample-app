@@ -6,10 +6,9 @@ import com.dh.sample.citytoursampleapp.domain.City
 
 interface CityUseCase {
     fun isExist(cityName: String): Boolean
-
     fun insertCity(cityRegisterRequest: CityRegisterRequest): City
     fun updateCityInfo(cityId: Long, cityUpdateRequest: CityUpdateRequest): City
-
     fun getCityInfo(cityName: String): City
     fun getCityInfo(cityId: Long): City
+    fun deleteCityInfo(cityId: Long)
 }

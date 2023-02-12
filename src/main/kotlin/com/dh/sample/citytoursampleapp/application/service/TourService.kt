@@ -65,12 +65,7 @@ class TourService(
 
     override fun deleteTourInfo(tourId: Long, userId: Long) {
         userValidation(userId)
-        tourPort.getTourInfo(tourId)?.let {
-            tourPort.deleteTourInfo(it)
-        } ?: kotlin.run {
-            //2. tour validation
-            throw CityTourException(ErrorType.NOT_EXIST_TOUR)
-        }
+        tourPort.deleteTourInfo(tourId)
     }
 
     override fun getTourInfo(tourId: Long): Tour {

@@ -3,6 +3,8 @@ package com.dh.sample.citytoursampleapp.adapter.out.persistence
 import com.dh.sample.citytoursampleapp.adapter.out.persistence.entity.EntityTour
 import com.dh.sample.citytoursampleapp.adapter.out.persistence.repository.TourRepository
 import com.dh.sample.citytoursampleapp.application.port.out.persistence.TourPort
+import com.dh.sample.citytoursampleapp.domain.exception.CityTourException
+import com.dh.sample.citytoursampleapp.domain.exception.ErrorType
 import com.dh.sample.citytoursampleapp.infrastructure.Adapter
 import org.springframework.data.repository.findByIdOrNull
 
@@ -25,8 +27,17 @@ class TourAdapter(private val tourRepository: TourRepository) : TourPort {
         return tourRepository.save(entityTour)
     }
 
-    override fun deleteTourInfo(entityTour: EntityTour) {
+    override fun deleteTourInfo(tourId: Long) {
         //기취소 건을 확인하기 위해 flag를 사용하는게 좋겠지만 일단 delete로 진행
-        tourRepository.delete(entityTour)
+        tourRepository.findByIdOrNull(tourId)?.let {
+            tourRepository.delete(it)
+        } ?: kotlin.run {
+            //2. tour validation
+            throw CityTourException(ErrorType.NOT_EXIST_TOUR)
+        }
+    }
+
+    override fun getTourInfosByCityId(cityId: Long): List<EntityTour> {
+        return tourRepository.findByCityIdEquals(cityId)
     }
 }
