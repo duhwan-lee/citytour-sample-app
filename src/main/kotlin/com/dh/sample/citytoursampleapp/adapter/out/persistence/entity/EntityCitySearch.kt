@@ -8,8 +8,7 @@ import java.time.OffsetDateTime
 @Table(name = "city_search")
 class EntityCitySearch(cityId: Long) {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     val cityId: Long = cityId
 
-    val searchedAt: OffsetDateTime = OffsetDateTime.now()
+    val searchAt: OffsetDateTime = OffsetDateTime.now()
 }

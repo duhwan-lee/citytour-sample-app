@@ -11,7 +11,7 @@ import java.time.LocalDateTime
 @EntityListeners(AuditingEntityListener::class)
 class EntityCity(cityName: String, val country: String) {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     val cityId: Long? = null
 
     var cityName: String = cityName
