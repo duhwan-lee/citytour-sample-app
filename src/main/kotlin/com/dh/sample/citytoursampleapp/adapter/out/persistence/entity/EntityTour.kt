@@ -13,7 +13,7 @@ class EntityTour(
     endDateTime: OffsetDateTime
 ) {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     val tourId: Long? = null
 
     val userId: Long = userId
