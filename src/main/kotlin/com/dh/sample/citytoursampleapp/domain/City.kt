@@ -7,10 +7,11 @@ import java.time.LocalDateTime
 * country는 국가값으로 변경할 수 없음.
 * */
 data class City(
-    val id: Long,
+    val cityId: Long,
     val cityName: String,
     val country: String,
-    val createdAt: LocalDateTime
+    val createdAt: LocalDateTime,
+    val searchAt: LocalDateTime?
 ) {
     companion object {
         fun from(entityCity: EntityCity): City {
@@ -18,7 +19,8 @@ data class City(
                 entityCity.cityId!!,
                 entityCity.cityName,
                 entityCity.country,
-                entityCity.createAt
+                entityCity.createAt,
+                entityCity.searchAt()
             )
         }
     }

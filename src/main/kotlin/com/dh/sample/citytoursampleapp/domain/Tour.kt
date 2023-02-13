@@ -15,7 +15,7 @@ data class Tour(
         fun from(entityTour: EntityTour, entityCity: EntityCity): Tour {
             return Tour(
                 entityTour.tourId!!,
-                entityTour.userID,
+                entityTour.userId,
                 City.from(entityCity),
                 entityTour.startDate,
                 entityTour.endDate

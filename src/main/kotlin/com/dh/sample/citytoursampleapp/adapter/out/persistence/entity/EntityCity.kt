@@ -21,7 +21,18 @@ class EntityCity(cityName: String, val country: String) {
     var createAt: LocalDateTime = LocalDateTime.now()
         private set
 
+    @OneToOne
+    @JoinColumn(name = "city_id")
+    private val entityCitySearch: EntityCitySearch? = null
     fun modify(cityName: String) {
         this.cityName = cityName
+    }
+
+    fun isWithIn7daySearch(now: LocalDateTime): Boolean {
+        return entityCitySearch?.isWithIn7d(now) ?: false
+    }
+
+    fun searchAt(): LocalDateTime? {
+        return entityCitySearch?.searchAt
     }
 }

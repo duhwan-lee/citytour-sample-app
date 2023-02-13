@@ -16,7 +16,7 @@ class TourAdapter(private val tourRepository: TourRepository) : TourPort {
 
     override fun getTourInfosByUserId(userId: Long): List<EntityTour> {
         //user table을 분리해야 하지만 우선 유저 등록 api가 없어서 여행 테이블을 기준으로 유저를 조회한다.
-        return tourRepository.findByUserIDEquals(userId)
+        return tourRepository.findByUserIdEquals(userId)
     }
 
     override fun getTourInfo(tourId: Long): EntityTour? {

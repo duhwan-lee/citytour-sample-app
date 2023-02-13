@@ -2,6 +2,7 @@ package com.dh.sample.citytoursampleapp.adapter.`in`.rest
 
 import com.dh.sample.citytoursampleapp.adapter.`in`.data.request.CityRegisterRequest
 import com.dh.sample.citytoursampleapp.adapter.`in`.data.request.CityUpdateRequest
+import com.dh.sample.citytoursampleapp.adapter.`in`.data.response.CityListResponse
 import com.dh.sample.citytoursampleapp.adapter.`in`.data.response.CommonResponse
 import com.dh.sample.citytoursampleapp.adapter.`in`.data.response.ResponseType
 import com.dh.sample.citytoursampleapp.application.port.`in`.CityUseCase
@@ -46,6 +47,21 @@ class CityController(private val cityUseCase: CityUseCase) {
     ): ResponseEntity<CommonResponse> {
         cityUseCase.deleteCityInfo(cityId)
         return ResponseType.OK.toResponse()
+    }
+
+    @GetMapping("/list/{userId}")
+    fun findCityList(@PathVariable("userId") userId: Long): ResponseEntity<CommonResponse> {
+        val onTourCityList = cityUseCase.getOnTourCityList(userId)
+        val plannedCityList = cityUseCase.getPlannedCityList(userId)
+        val excludeList = plannedCityList.map { it.getCityId() }
+        val defaultCityList = cityUseCase.getDefaultCityListExclude(excludeList)
+        return ResponseType.OK.toResponse(
+            CityListResponse(
+                onTourCityList,
+                plannedCityList,
+                defaultCityList
+            )
+        )
     }
 
 }

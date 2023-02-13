@@ -16,7 +16,7 @@ class EntityTour(
     @GeneratedValue(strategy = GenerationType.AUTO)
     val tourId: Long? = null
 
-    val userID: Long = userId
+    val userId: Long = userId
     var cityId: Long = cityId
         private set
     var startDate: OffsetDateTime = startDateTime
