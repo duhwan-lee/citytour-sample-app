@@ -1,0 +1,147 @@
+= APIs
+:toc: left
+:toclevels: 3
+:sectlinks:
+
+
+[[resources-post]]
+== City (도시 정보)
+=== City Register (도시 등록)
+==== Request
+===== Http
+include::{snippets}/city_register/http-request.adoc[]
+include::{snippets}/city_register/request-body.adoc[]
+include::{snippets}/city_register/request-fields.adoc[]
+
+===== curl
+include::{snippets}/city_register/curl-request.adoc[]
+
+==== Response
+include::{snippets}/city_register/http-response.adoc[]
+include::{snippets}/city_register/response-fields.adoc[]
+
+=== City Find (도시 조회-도시ID 기반)
+==== Request
+===== Http
+include::{snippets}/city_findBy_cityId/http-request.adoc[]
+include::{snippets}/city_findBy_cityId/path-parameters.adoc[]
+
+===== curl
+include::{snippets}/city_findBy_cityId/curl-request.adoc[]
+
+==== Response
+include::{snippets}/city_findBy_cityId/http-response.adoc[]
+include::{snippets}/city_findBy_cityId/response-fields.adoc[]
+
+=== City Find (도시 조회-도시명 기반)
+==== Request
+===== Http
+include::{snippets}/city_findBy_cityName/http-request.adoc[]
+include::{snippets}/city_findBy_cityName/query-parameters.adoc[]
+
+===== curl
+include::{snippets}/city_findBy_cityName/curl-request.adoc[]
+
+==== Response
+include::{snippets}/city_findBy_cityName/http-response.adoc[]
+include::{snippets}/city_findBy_cityName/response-fields.adoc[]
+
+=== City Update (도시 정보 수정)
+==== Request
+===== Http
+include::{snippets}/city_update/http-request.adoc[]
+
+include::{snippets}/city_update/path-parameters.adoc[]
+
+include::{snippets}/city_update/request-body.adoc[]
+include::{snippets}/city_update/request-fields.adoc[]
+
+===== curl
+include::{snippets}/city_update/curl-request.adoc[]
+
+==== Response
+include::{snippets}/city_update/http-response.adoc[]
+include::{snippets}/city_update/response-fields.adoc[]
+
+=== City Delete (도시 정보 삭제)
+==== Request
+===== Http
+include::{snippets}/city_delete/http-request.adoc[]
+
+include::{snippets}/city_delete/path-parameters.adoc[]
+
+===== curl
+include::{snippets}/city_delete/curl-request.adoc[]
+
+==== Response
+include::{snippets}/city_delete/http-response.adoc[]
+include::{snippets}/city_delete/response-fields.adoc[]
+
+=== City List (유저별 도시목록 조)
+==== Request
+===== Http
+include::{snippets}/city_get_list/http-request.adoc[]
+
+include::{snippets}/city_get_list/path-parameters.adoc[]
+
+===== curl
+include::{snippets}/city_get_list/curl-request.adoc[]
+
+==== Response
+include::{snippets}/city_get_list/http-response.adoc[]
+include::{snippets}/city_get_list/response-fields.adoc[]
+
+[[resources-post]]
+== Tour (여행 정보)
+
+=== Tour Register (여행정보 등록)
+==== Request
+===== Http
+include::{snippets}/tour_register/http-request.adoc[]
+include::{snippets}/tour_register/request-body.adoc[]
+include::{snippets}/tour_register/request-fields.adoc[]
+===== curl
+include::{snippets}/tour_register/curl-request.adoc[]
+
+==== Response
+include::{snippets}/tour_register/http-response.adoc[]
+include::{snippets}/tour_register/response-fields.adoc[]
+
+=== Tour Find (여행정보 조회)
+==== Request
+===== Http
+include::{snippets}/tour_get/http-request.adoc[]
+include::{snippets}/tour_get/path-parameters.adoc[]
+===== curl
+include::{snippets}/tour_get/curl-request.adoc[]
+
+==== Response
+include::{snippets}/tour_get/http-response.adoc[]
+include::{snippets}/tour_get/response-fields.adoc[]
+
+=== Tour Update (여행정보 수정)
+==== Request
+===== Http
+include::{snippets}/tour_update/http-request.adoc[]
+include::{snippets}/tour_update/path-parameters.adoc[]
+include::{snippets}/tour_update/request-body.adoc[]
+include::{snippets}/tour_update/request-fields.adoc[]
+===== curl
+include::{snippets}/tour_update/curl-request.adoc[]
+
+==== Response
+include::{snippets}/tour_update/http-response.adoc[]
+include::{snippets}/tour_update/response-fields.adoc[]
+
+=== Tour Delete (여행정보 삭제)
+==== Request
+===== Http
+include::{snippets}/tour_delete/http-request.adoc[]
+include::{snippets}/tour_delete/path-parameters.adoc[]
+
+===== curl
+include::{snippets}/tour_delete/curl-request.adoc[]
+
+==== Response
+include::{snippets}/tour_delete/http-response.adoc[]
+include::{snippets}/tour_delete/response-fields.adoc[]
