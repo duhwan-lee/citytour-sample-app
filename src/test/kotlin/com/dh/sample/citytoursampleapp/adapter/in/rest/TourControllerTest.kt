@@ -1,10 +1,6 @@
 package com.dh.sample.citytoursampleapp.adapter.`in`.rest
 
-import com.dh.sample.citytoursampleapp.adapter.`in`.data.request.CityRegisterRequest
-import com.dh.sample.citytoursampleapp.adapter.`in`.data.request.TourRegisterRequest
-import com.dh.sample.citytoursampleapp.infrastructure.JsonDateDeserializer
 import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
-import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.Test
 import org.springframework.boot.test.autoconfigure.restdocs.AutoConfigureRestDocs
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc
@@ -19,18 +15,12 @@ import org.springframework.restdocs.request.RequestDocumentation
 import org.springframework.test.context.TestConstructor
 import org.springframework.test.web.servlet.MockMvc
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers
-import java.time.LocalDate
-import java.time.LocalTime
-import java.time.OffsetDateTime
-import java.time.ZoneOffset
-import java.time.format.DateTimeFormatter
 
 @SpringBootTest
 @AutoConfigureMockMvc
 @AutoConfigureRestDocs
 @TestConstructor(autowireMode = TestConstructor.AutowireMode.ALL)
 class TourControllerTest(private val mockMvc: MockMvc) {
-    private val formatter: DateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd")
 
     @Test
     fun testRegisterTour() {
