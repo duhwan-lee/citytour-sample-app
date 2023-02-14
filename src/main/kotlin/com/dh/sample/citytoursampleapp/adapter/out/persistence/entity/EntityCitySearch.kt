@@ -14,7 +14,8 @@ class EntityCitySearch(cityId: Long) {
 
     val searchAt: LocalDateTime = LocalDateTime.now()
 
-    fun isWithIn7d(now:LocalDateTime): Boolean {
-        return searchAt.plusWeeks(1).isAfter(now) && now.minusWeeks(1).isBefore(searchAt)
+    fun isWithIn7d(now: LocalDateTime): Boolean {
+        return searchAt.isBefore(now) && searchAt.plusWeeks(1).isAfter(now) && now.minusWeeks(1)
+            .isBefore(searchAt)
     }
 }

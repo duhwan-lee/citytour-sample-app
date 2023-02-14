@@ -23,6 +23,12 @@ class CityService(
     private val userPort: UserPort,
     private val searchPort: SearchPort
 ) : CityUseCase {
+    companion object {
+        fun isWithIn24H(source: LocalDateTime, now: LocalDateTime): Boolean =
+            source.isBefore(now) && source.plusDays(1).isAfter(now) && now.minusDays(1)
+                .isBefore(source)
+    }
+
     override fun isExist(cityName: String): Boolean {
         return cityPort.findByCityName(cityName)?.let { true } ?: false
     }
@@ -117,9 +123,6 @@ class CityService(
         return (w24CreateCityList + searchedCityList + shuffledAnotherList).map { City.from(it) }
             .subList(0, 10)
     }
-
-    fun isWithIn24H(source: LocalDateTime, now: LocalDateTime): Boolean =
-        source.plusDays(1).isAfter(now) && now.minusDays(1).isBefore(source)
 
     override fun getPlannedCityList(userId: Long): List<PlannedCity> =
         cityPort.findDistinctPlannedCityByUserId(userId)
